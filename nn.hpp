@@ -18,6 +18,7 @@ public:
   void updateWeights();
   void train(std::vector<RowVector *> data);
 
+  std::vector<uint> topology;
   std::vector<RowVector *> neuronLayers; // stores the different layers of out network
   std::vector<RowVector *> cacheLayers;  // stores the unactivated (activation fn not yet applied) values of layers
   std::vector<RowVector *> deltas;       // stores the error contribution of each neurons
