@@ -1,27 +1,34 @@
-#pragma once
+#ifndef NN_HPP
+#define NN_HPP
 
+#include <eigen3/Eigen/Eigen>
 #include <vector>
 #include <iostream>
-#include <eigen3/Eigen/Eigen>
+#include <cmath>
 
-typedef Eigen::MatrixXf Matrix;
 typedef Eigen::RowVectorXf RowVector;
-typedef Eigen::VectorXf ColVector;
+typedef Eigen::MatrixXf Matrix;
+typedef unsigned int uint;
 
 class NeuralNetwork
 {
 public:
-  NeuralNetwork(std::vector<uint> topology, float learningRate = 0.005);
+  NeuralNetwork(const std::vector<uint> &topology, float learningRate = 0.1);
+  ~NeuralNetwork(); // Added destructor
+
   void forward(RowVector &input);
   void backward(RowVector &output);
   void calcErrors(RowVector &output);
   void updateWeights();
-  void train(std::vector<RowVector *> data);
+  void train(std::vector<RowVector *> input_data, std::vector<RowVector *> output_data);
 
+private:
   std::vector<uint> topology;
-  std::vector<RowVector *> neuronLayers; // stores the different layers of out network
-  std::vector<RowVector *> cacheLayers;  // stores the unactivated (activation fn not yet applied) values of layers
-  std::vector<RowVector *> deltas;       // stores the error contribution of each neurons
-  std::vector<Matrix *> weights;         // the connection weights itself
+  std::vector<RowVector *> neuronLayers;
+  std::vector<RowVector *> cacheLayers;
+  std::vector<RowVector *> deltas;
+  std::vector<Matrix *> weights;
   float learningRate;
 };
+
+#endif
