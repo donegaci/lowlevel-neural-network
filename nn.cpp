@@ -1,7 +1,7 @@
 #include "nn.hpp"
 
 // neural network class constructor
-NeuralNetwork::NeuralNetwork(std::vector<uint> topology, float learningRate = 0.005)
+NeuralNetwork::NeuralNetwork(std::vector<uint> topology, float learningRate)
 {
   this->topology = topology;
   this->learningRate = learningRate;
