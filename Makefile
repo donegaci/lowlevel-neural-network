@@ -1,10 +1,10 @@
 CC=g++
-CFLAGS=-I.
+CFLAGS=-I. -std=c++20
 
 # Source and output files
-SRC = nn.cpp
+SRC = main.cpp nn.cpp
 OBJ = $(SRC:.cpp=.o)
-TARGET = nn
+TARGET = main
 
 # Default target
 all: $(TARGET)
